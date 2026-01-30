@@ -1,50 +1,86 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0b0b10;
-  --card:#12121a;
-  --line:rgba(255,255,255,.08);
+  --bg:#07070c;
+  --card:#0f1018;
+  --card2:#121425;
+  --line:rgba(255,255,255,.10);
   --txt:#f7f7fb;
-  --muted:#b9b9c8;
+  --muted:#b8b8c8;
   --accent:#ff4fb3;
+  --accent2:#7c5cff;
   --good:#2fe07b;
-  --radius:18px;
-  --shadow:0 18px 45px rgba(0,0,0,.55);
+  --gold:#ffd36a;
+
+  --r:20px;
+  --shadow: 0 22px 60px rgba(0,0,0,.65);
+  --shadow2: 0 14px 40px rgba(0,0,0,.55);
 }
 
+*{box-sizing:border-box}
 body{
   margin:0;
-  background:
-    radial-gradient(900px 500px at 85% -10%, rgba(255,79,179,.25), transparent 60%),
-    var(--bg);
-  font-family:"Cairo",Arial,sans-serif;
+  font-family:"Cairo", Arial, sans-serif;
   color:var(--txt);
+  background:
+    radial-gradient(900px 540px at 85% -10%, rgba(255,79,179,.28), transparent 62%),
+    radial-gradient(820px 520px at 10% 10%, rgba(124,92,255,.18), transparent 60%),
+    radial-gradient(700px 460px at 35% 120%, rgba(47,224,123,.10), transparent 60%),
+    var(--bg);
 }
 
-.wrap{max-width:1000px;margin:auto;padding:16px}
+.wrap{max-width:1040px;margin:auto;padding:16px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+
 .card{
-  background:rgba(255,255,255,.03);
   border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  border-radius:var(--r);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
   padding:14px;
-  margin-bottom:16px;
 }
-h1{margin:0;font-size:22px;font-weight:900}
-h2{margin:0 0 10px;font-size:18px}
-p{color:var(--muted);font-size:14px}
+
+.card.soft{
+  background:
+    radial-gradient(700px 260px at 80% -40%, rgba(255,79,179,.22), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+}
+
+.header{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;
+}
+.header h1{margin:0;font-size:24px;font-weight:900;letter-spacing:.2px}
+.header p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.pill{
+  padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.88);
+  font-size:12px;white-space:nowrap;
+}
+
+.sectionTitle{
+  margin:0 0 10px 0;
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+.muted{color:var(--muted)}
+.sep{height:1px;background:rgba(255,255,255,.08);margin:12px 0}
 
 .hero{
   width:100%;
-  border-radius:16px;
-  border:1px solid var(--line);
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow2);
 }
 
 .thumbs{
@@ -53,64 +89,97 @@ p{color:var(--muted);font-size:14px}
   gap:10px;
   margin-top:10px;
 }
-.thumbs img{
+@media(max-width:520px){.thumbs{grid-template-columns:repeat(3,1fr)}}
+.thumb{
   width:100%;
-  border-radius:14px;
-  border:1px solid var(--line);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
   cursor:pointer;
-  opacity:.8;
-  transition:.2s;
+  opacity:.82;
+  transition:.18s ease;
 }
-.thumbs img:hover{opacity:1}
+.thumb:hover{opacity:1;transform:translateY(-1px)}
+.thumb.active{outline:2px solid rgba(255,79,179,.55);opacity:1}
 
 .priceRow{
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap
 }
-.old{text-decoration:line-through;color:#aaa}
-.new{font-size:26px;font-weight:900}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.badge{
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:12px;
+.label{font-size:12px;color:var(--muted)}
+.old{color:rgba(255,255,255,.55);text-decoration:line-through;font-weight:700}
+.new{font-size:28px;font-weight:900;letter-spacing:.3px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag{
+  padding:7px 11px;border-radius:999px;font-size:12px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.04);
 }
-.badge.accent{background:var(--accent)}
-.badge.good{background:var(--good);color:#000}
-.badge.light{background:#fff;color:#000}
+.tag.accent{border-color:rgba(255,79,179,.25);background:rgba(255,79,179,.12)}
+.tag.good{border-color:rgba(47,224,123,.25);background:rgba(47,224,123,.12)}
+.tag.light{background:#fff;color:#000;border-color:#fff}
 
 iframe{
   width:100%;
   height:360px;
-  border-radius:16px;
-  border:none;
+  border:0;
+  border-radius:18px;
+  box-shadow: var(--shadow2);
+  background:#000;
 }
+@media(max-width:520px){iframe{height:320px}}
 
 .review{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:10px;
-  margin-bottom:8px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
+  padding:10px 12px;
+  background:rgba(0,0,0,.20);
 }
+.reviewTop{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+}
+.rName{font-weight:900;font-size:13px}
+.rStars{color:var(--gold);font-size:12px;letter-spacing:.6px}
+.review p{margin:6px 0 0;color:rgba(255,255,255,.92);font-size:13px}
 
+/* Accordion (+ / -) */
 details{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:10px;
-  margin-bottom:8px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
+  background:rgba(0,0,0,.18);
+  padding:10px 12px;
 }
+details + details{margin-top:10px}
 summary{
   cursor:pointer;
-  font-weight:700;
-}
-footer{
-  margin-top:40px;
-  text-align:center;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:900;
   font-size:13px;
-  color:#b9b9c8;
-  padding:16px;
-  border-top:1px solid var(--line);
+}
+summary::-webkit-details-marker{display:none}
+.accIcon{
+  width:28px;height:28px;border-radius:10px;
+  display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  flex:0 0 auto;
+  font-weight:900;
+}
+details[open] .accIcon{background:rgba(255,79,179,.12);border-color:rgba(255,79,179,.22)}
+.content{margin-top:8px;color:var(--muted);font-size:13px}
+
+footer{
+  margin-top:28px;
+  text-align:center;
+  color:rgba(255,255,255,.70);
+  padding:16px 10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  font-size:13px;
+  background:rgba(255,255,255,.02);
+  border-radius:16px;
 }
 </style>
 </head>
@@ -118,95 +187,214 @@ footer{
 <body>
 <div class="wrap">
 
-<!-- TITLE -->
-<div class="card">
-  <h1>Huda Beauty – 1 Coat WOW! Mascara 🩷</h1>
-  <p>ماسكرا بتدي فوليوم وطول من أول طبقة، سواد فحمي واووو فعلاً ✨</p>
-</div>
-
-<!-- IMAGES -->
-<div class="card">
-  <img id="mainImg" class="hero" src="https://i.postimg.cc/c1hTf0WP/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٠.jpg">
-  <div class="thumbs">
-    <img onclick="swap(this)" src="https://i.postimg.cc/c1hTf0WP/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٠.jpg">
-    <img onclick="swap(this)" src="https://i.postimg.cc/fWC5YDsG/photo_٢٠٢٦_٠١_٢٨_١٩_٠٢_٣١.jpg">
-    <img onclick="swap(this)" src="https://i.postimg.cc/ryjg5Mc2/photo_٢٠٢٦_٠١_٢٨_١٩_٥٣_٢٣.jpg">
-    <img onclick="swap(this)" src="https://i.postimg.cc/dQ6nGwvK/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤١.jpg">
-  </div>
-</div>
-
-<!-- PRICE -->
-<div class="card">
-  <div class="priceRow">
+  <!-- Header -->
+  <div class="card soft header">
     <div>
-      <div>السعر قبل الخصم</div>
-      <div class="old">3200 جنيه</div>
+      <h1>Huda Beauty – 1 Coat WOW! Mascara 🩷</h1>
+      <p>فوليوم + طول + سواد فحمي من أول طبقة… اسم على مسمّى: واووو ✨</p>
     </div>
+    <div class="pill">Full Effect من أول Layer</div>
+  </div>
+
+  <div class="grid">
+    <!-- LEFT: Images + Price + Videos -->
+    <div class="card">
+      <h2 class="sectionTitle">صور المنتج</h2>
+
+      <img id="mainImg" class="hero"
+        src="https://i.postimg.cc/c1hTf0WP/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٠.jpg"
+        alt="Huda Beauty 1 Coat WOW Mascara" />
+
+      <div class="thumbs" id="thumbs">
+        <img class="thumb active" onclick="swap(this)"
+          src="https://i.postimg.cc/c1hTf0WP/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٠.jpg" alt="1" />
+        <img class="thumb" onclick="swap(this)"
+          src="https://i.postimg.cc/fWC5YDsG/photo_٢٠٢٦_٠١_٢٨_١٩_٠٢_٣١.jpg" alt="2" />
+        <img class="thumb" onclick="swap(this)"
+          src="https://i.postimg.cc/ryjg5Mc2/photo_٢٠٢٦_٠١_٢٨_١٩_٥٣_٢٣.jpg" alt="3" />
+        <img class="thumb" onclick="swap(this)"
+          src="https://i.postimg.cc/sfmK5szt/photo_٢٠٢٦_٠١_٢٨_١٩_٥٣_٢٣_(2).jpg" alt="4" />
+        <img class="thumb" onclick="swap(this)"
+          src="https://i.postimg.cc/dQ6nGwvK/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤١.jpg" alt="5" />
+        <img class="thumb" onclick="swap(this)"
+          src="https://i.postimg.cc/y6jn0sBK/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٢.jpg" alt="6" />
+      </div>
+
+      <!-- Price -->
+      <div class="sep"></div>
+      <div class="card soft" style="box-shadow:none;margin:0;padding:14px">
+        <h2 class="sectionTitle" style="margin-bottom:10px">السعر</h2>
+
+        <div class="priceRow">
+          <div>
+            <div class="label">السعر قبل الخصم</div>
+            <div class="old">3200 جنيه</div>
+          </div>
+          <div style="text-align:left">
+            <div class="label">السعر بعد الخصم</div>
+            <div class="new">2399 جنيه</div>
+          </div>
+        </div>
+
+        <div class="tags">
+          <span class="tag accent">نسبة الخصم: <b>25%</b></span>
+          <span class="tag good">وفرت: <b>801 جنيه</b></span>
+          <span class="tag light">منتج أصلي 100%</span>
+        </div>
+      </div>
+
+      <!-- Videos (mid page) -->
+      <div class="sep"></div>
+      <h2 class="sectionTitle">فيديوهات المنتج 🎥</h2>
+
+      <iframe src="https://www.youtube.com/embed/4j_980L8sw8" title="Video 1" allowfullscreen></iframe>
+      <div style="height:10px"></div>
+      <iframe src="https://www.youtube.com/embed/jnRC9RCS7Mk" title="Video 2" allowfullscreen></iframe>
+    </div>
+
+    <!-- RIGHT: Details + Reviews + Accordions -->
     <div>
-      <div>السعر بعد الخصم</div>
-      <div class="new">2399 جنيه</div>
+      <!-- Features -->
+      <div class="card">
+        <h2 class="sectionTitle">ليه الماسكرا دي WOW فعلًا؟</h2>
+        <div class="muted" style="font-size:13px;margin-bottom:8px">
+          فرشة معمولة مخصوص عشان تفصل الرموش وتدي طول وفوليوم من غير تكتّل.
+        </div>
+        <ul style="margin:0;padding:0 18px 0 0">
+          <li>Full Effect من أول Layer.</li>
+          <li>سواد فحمي مكثف يبرز العين.</li>
+          <li>تفصل الرموش وتدي طول واضح.</li>
+          <li>فوليوم قوي كانك مركبة لاشز.</li>
+          <li>تدي Curve ورفع للرموش بشكل طبيعي.</li>
+        </ul>
+      </div>
+
+      <!-- Reviews (16 visible) -->
+      <div class="card" style="margin-top:14px">
+        <h2 class="sectionTitle">تقييمات العملاء</h2>
+
+        <div style="display:grid;gap:10px">
+          <div class="review"><div class="reviewTop"><div class="rName">سارة</div><div class="rStars">★★★★★</div></div><p>من أول طبقة فعلاً فرق رهيب… طول وفوليوم مع بعض.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">مريم</div><div class="rStars">★★★★★</div></div><p>سوادها فحمي وجميلة جدًا، ومفيش تكتّل.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">هبة</div><div class="rStars">★★★★★</div></div><p>بتفصل الرموش واحدة واحدة… شكل لاشز بجد.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">نور</div><div class="rStars">★★★★★</div></div><p>استخدمتها للمناسبة وثباتها ممتاز.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">دينا</div><div class="rStars">★★★★★</div></div><p>الفرشة مختلفة وبتوصل لكل الشعيرات.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">ريم</div><div class="rStars">★★★★★</div></div><p>واووو فعلًا… أول مرة ماسكرا تديني النتيجة دي.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">شروق</div><div class="rStars">★★★★★</div></div><p>بتدي طول واضح من أول استخدام.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">فاطمة</div><div class="rStars">★★★★★</div></div><p>مبتسيحش تحت العين عندي… ممتازة.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">آية</div><div class="rStars">★★★★★</div></div><p>سريعة وسهلة في الاستخدام والنتيجة قوية.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">رانيا</div><div class="rStars">★★★★★</div></div><p>فوليوم جامد بدون ما تلم الرموش.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">ملك</div><div class="rStars">★★★★★</div></div><p>بتفتح العين وبتبين الرموش أطول.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">سلمى</div><div class="rStars">★★★★★</div></div><p>مناسبة جدًا للاستخدام اليومي.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">هاجر</div><div class="rStars">★★★★★</div></div><p>من غير تكتل… ده أهم حاجة بالنسبة لي.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">منة</div><div class="rStars">★★★★★</div></div><p>نتيجة نظيفة ومش بتكسر الرموش.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">بسمة</div><div class="rStars">★★★★★</div></div><p>فرشة مظبوطة جدًا وبتدي Lift.</p></div>
+          <div class="review"><div class="reviewTop"><div class="rName">ليلى</div><div class="rStars">★★★★★</div></div><p>حلوة قوي… واووو من أول طبقة.</p></div>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="card" style="margin-top:14px">
+        <h2 class="sectionTitle">الأسئلة الشائعة</h2>
+
+        <details>
+          <summary>هل بتكتّل الرموش؟ <span class="accIcon">+</span></summary>
+          <div class="content">لا، الفرشة مصممة للفصل وتقليل التكتّل… المهم طبقات خفيفة.</div>
+        </details>
+        <details>
+          <summary>سوادها عامل إزاي؟ <span class="accIcon">+</span></summary>
+          <div class="content">سواد فحمي مكثف يبرز العين والرموش بشكل واضح.</div>
+        </details>
+        <details>
+          <summary>بتدي طول ولا فوليوم بس؟ <span class="accIcon">+</span></summary>
+          <div class="content">الاتنين مع بعض: طول + فوليوم + فصل للرموش.</div>
+        </details>
+        <details>
+          <summary>ثباتها طول اليوم؟ <span class="accIcon">+</span></summary>
+          <div class="content">ثبات كويس للاستخدام اليومي، ومع طبقة خفيفة النتيجة أفضل.</div>
+        </details>
+        <details>
+          <summary>مناسبة للعين الحساسة؟ <span class="accIcon">+</span></summary>
+          <div class="content">غالبًا مناسبة، ولو عندك حساسية شديدة جرّبي على جزء بسيط الأول.</div>
+        </details>
+        <details>
+          <summary>ممكن طبقتين أو أكتر؟ <span class="accIcon">+</span></summary>
+          <div class="content">أيوه… طبقة أولى للفصل، وطبقة تانية للفوليوم الأقوى.</div>
+        </details>
+        <details>
+          <summary>هل المنتج أصلي؟ <span class="accIcon">+</span></summary>
+          <div class="content">أيوه… المنتج أصلي 100%.</div>
+        </details>
+      </div>
+
+      <!-- Why Us Accordion -->
+      <div class="card" style="margin-top:14px">
+        <h2 class="sectionTitle">ليه تشتري من متجرنا؟</h2>
+
+        <details open>
+          <summary>منتجات أصلية 100% <span class="accIcon">−</span></summary>
+          <div class="content">بنوفّر منتجات أصلية ومعروفة المصدر.</div>
+        </details>
+        <details>
+          <summary>فحص المنتج قبل الشحن <span class="accIcon">+</span></summary>
+          <div class="content">بنراجع الحالة الخارجية قبل التغليف لضمان وصوله سليم.</div>
+        </details>
+        <details>
+          <summary>تغليف آمن ومحترف <span class="accIcon">+</span></summary>
+          <div class="content">تغليف قوي يقلل احتمالات التلف أثناء الشحن.</div>
+        </details>
+        <details>
+          <summary>دعم سريع على الاستفسارات <span class="accIcon">+</span></summary>
+          <div class="content">أي سؤال عن الاستخدام أو اختيار الأنسب… بنرد بسرعة.</div>
+        </details>
+        <details>
+          <summary>صور حقيقية للمنتج <span class="accIcon">+</span></summary>
+          <div class="content">بنستخدم صور واضحة للمنتج عشان تبقي عارف/ة كل التفاصيل.</div>
+        </details>
+        <details>
+          <summary>أسعار منافسة <span class="accIcon">+</span></summary>
+          <div class="content">بنحاول دايمًا نوفر أفضل سعر مقابل الجودة.</div>
+        </details>
+        <details>
+          <summary>تجربة شراء سهلة وواضحة <span class="accIcon">+</span></summary>
+          <div class="content">معلومات السعر والخصم والمحتوى كله واضح قدامك.</div>
+        </details>
+        <details>
+          <summary>ثقة عملاء ومراجعات <span class="accIcon">+</span></summary>
+          <div class="content">تقييمات حقيقية وتجارب بتساعدك تاخد قرارك بسهولة.</div>
+        </details>
+      </div>
+
     </div>
   </div>
 
-  <div class="badges">
-    <span class="badge accent">خصم 25%</span>
-    <span class="badge good">وفرت 801 جنيه</span>
-    <span class="badge light">منتج أصلي 100%</span>
-  </div>
-</div>
-
-<!-- VIDEOS -->
-<div class="card">
-  <h2>فيديوهات المنتج 🎥</h2>
-  <iframe src="https://www.youtube.com/embed/4j_980L8sw8"></iframe><br><br>
-  <iframe src="https://www.youtube.com/embed/jnRC9RCS7Mk"></iframe>
-</div>
-
-<!-- REVIEWS -->
-<div class="card">
-  <h2>آراء العملاء ⭐ (16 تقييم)</h2>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ – من أول طبقة بتفرق جدًا</div>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ – سوادها تحفة</div>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ – كأني مركبة لاشز</div>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ – أفضل ماسكرا</div>
-</div>
-
-<!-- FAQ -->
-<div class="card">
-  <h2>الأسئلة الشائعة</h2>
-  <details><summary>هل بتكتل؟</summary>لا، الفرشة مصممة للفصل.</details>
-  <details><summary>سوادها عامل إزاي؟</summary>فحمي وكثيف.</details>
-  <details><summary>من أول طبقة؟</summary>أيوه من أول Layer.</details>
-  <details><summary>مناسبة للعين الحساسة؟</summary>نعم.</details>
-  <details><summary>ثباتها؟</summary>طول اليوم.</details>
-  <details><summary>تنفع يوميًا؟</summary>جداً.</details>
-  <details><summary>هل أصلية؟</summary>أصلية 100%.</details>
-</div>
-
-<!-- WHY US -->
-<div class="card">
-  <h2>ليه تشتري من متجرنا؟</h2>
-  <details><summary>منتجات أصلية</summary>جميع منتجاتنا أصلية.</details>
-  <details><summary>فحص قبل الشحن</summary>بنراجع كل صنف.</details>
-  <details><summary>تغليف آمن</summary>تغليف احترافي.</details>
-  <details><summary>دعم سريع</summary>خدمة عملاء جاهزة.</details>
-  <details><summary>صور حقيقية</summary>بدون خداع.</details>
-  <details><summary>أسعار منافسة</summary>أفضل سعر.</details>
-  <details><summary>عروض مستمرة</summary>خصومات دايمًا.</details>
-  <details><summary>ثقة العملاء</summary>آلاف الطلبات الناجحة.</details>
-</div>
-
-<footer>
-  © To You – 2013
-</footer>
+  <!-- Footer -->
+  <footer class="card" style="box-shadow:none;margin-top:16px">
+    © To You – 2013
+  </footer>
 
 </div>
 
 <script>
-function swap(el){
-  document.getElementById("mainImg").src = el.src;
-}
-</script>
+  // swap main image
+  function swap(el){
+    document.getElementById("mainImg").src = el.src;
+    document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+    el.classList.add("active");
+  }
 
+  // Accordion + / -
+  function syncAccIcons(){
+    document.querySelectorAll("details").forEach(d=>{
+      const icon = d.querySelector(".accIcon");
+      if(!icon) return;
+      icon.textContent = d.open ? "−" : "+";
+    });
+  }
+  document.querySelectorAll("details").forEach(d=>{
+    d.addEventListener("toggle", syncAccIcons);
+  });
+  syncAccIcons();
+</script>
 </body>
 </html>
