@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0b10;
+  --card:#12121a;
+  --line:rgba(255,255,255,.08);
+  --txt:#f7f7fb;
+  --muted:#b9b9c8;
+  --accent:#ff4fb3;
+  --good:#2fe07b;
+  --radius:18px;
+  --shadow:0 18px 45px rgba(0,0,0,.55);
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(255,79,179,.25), transparent 60%),
+    var(--bg);
+  font-family:"Cairo",Arial,sans-serif;
+  color:var(--txt);
+}
+
+.wrap{max-width:1000px;margin:auto;padding:16px}
+.card{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:14px;
+  margin-bottom:16px;
+}
+h1{margin:0;font-size:22px;font-weight:900}
+h2{margin:0 0 10px;font-size:18px}
+p{color:var(--muted);font-size:14px}
+
+.hero{
+  width:100%;
+  border-radius:16px;
+  border:1px solid var(--line);
+}
+
+.thumbs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+.thumbs img{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--line);
+  cursor:pointer;
+  opacity:.8;
+  transition:.2s;
+}
+.thumbs img:hover{opacity:1}
+
+.priceRow{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.old{text-decoration:line-through;color:#aaa}
+.new{font-size:26px;font-weight:900}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badge{
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+}
+.badge.accent{background:var(--accent)}
+.badge.good{background:var(--good);color:#000}
+.badge.light{background:#fff;color:#000}
+
+iframe{
+  width:100%;
+  height:360px;
+  border-radius:16px;
+  border:none;
+}
+
+.review{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+  margin-bottom:8px;
+}
+
+details{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+  margin-bottom:8px;
+}
+summary{
+  cursor:pointer;
+  font-weight:700;
+}
+footer{
+  margin-top:40px;
+  text-align:center;
+  font-size:13px;
+  color:#b9b9c8;
+  padding:16px;
+  border-top:1px solid var(--line);
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<!-- TITLE -->
+<div class="card">
+  <h1>Huda Beauty – 1 Coat WOW! Mascara 🩷</h1>
+  <p>ماسكرا بتدي فوليوم وطول من أول طبقة، سواد فحمي واووو فعلاً ✨</p>
+</div>
+
+<!-- IMAGES -->
+<div class="card">
+  <img id="mainImg" class="hero" src="https://i.postimg.cc/c1hTf0WP/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٠.jpg">
+  <div class="thumbs">
+    <img onclick="swap(this)" src="https://i.postimg.cc/c1hTf0WP/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤٠.jpg">
+    <img onclick="swap(this)" src="https://i.postimg.cc/fWC5YDsG/photo_٢٠٢٦_٠١_٢٨_١٩_٠٢_٣١.jpg">
+    <img onclick="swap(this)" src="https://i.postimg.cc/ryjg5Mc2/photo_٢٠٢٦_٠١_٢٨_١٩_٥٣_٢٣.jpg">
+    <img onclick="swap(this)" src="https://i.postimg.cc/dQ6nGwvK/photo_٢٠٢٦_٠١_٢٨_١٩_٥٥_٤١.jpg">
+  </div>
+</div>
+
+<!-- PRICE -->
+<div class="card">
+  <div class="priceRow">
+    <div>
+      <div>السعر قبل الخصم</div>
+      <div class="old">3200 جنيه</div>
+    </div>
+    <div>
+      <div>السعر بعد الخصم</div>
+      <div class="new">2399 جنيه</div>
+    </div>
+  </div>
+
+  <div class="badges">
+    <span class="badge accent">خصم 25%</span>
+    <span class="badge good">وفرت 801 جنيه</span>
+    <span class="badge light">منتج أصلي 100%</span>
+  </div>
+</div>
+
+<!-- VIDEOS -->
+<div class="card">
+  <h2>فيديوهات المنتج 🎥</h2>
+  <iframe src="https://www.youtube.com/embed/4j_980L8sw8"></iframe><br><br>
+  <iframe src="https://www.youtube.com/embed/jnRC9RCS7Mk"></iframe>
+</div>
+
+<!-- REVIEWS -->
+<div class="card">
+  <h2>آراء العملاء ⭐ (16 تقييم)</h2>
+  <div class="review">⭐️⭐️⭐️⭐️⭐️ – من أول طبقة بتفرق جدًا</div>
+  <div class="review">⭐️⭐️⭐️⭐️⭐️ – سوادها تحفة</div>
+  <div class="review">⭐️⭐️⭐️⭐️⭐️ – كأني مركبة لاشز</div>
+  <div class="review">⭐️⭐️⭐️⭐️⭐️ – أفضل ماسكرا</div>
+</div>
+
+<!-- FAQ -->
+<div class="card">
+  <h2>الأسئلة الشائعة</h2>
+  <details><summary>هل بتكتل؟</summary>لا، الفرشة مصممة للفصل.</details>
+  <details><summary>سوادها عامل إزاي؟</summary>فحمي وكثيف.</details>
+  <details><summary>من أول طبقة؟</summary>أيوه من أول Layer.</details>
+  <details><summary>مناسبة للعين الحساسة؟</summary>نعم.</details>
+  <details><summary>ثباتها؟</summary>طول اليوم.</details>
+  <details><summary>تنفع يوميًا؟</summary>جداً.</details>
+  <details><summary>هل أصلية؟</summary>أصلية 100%.</details>
+</div>
+
+<!-- WHY US -->
+<div class="card">
+  <h2>ليه تشتري من متجرنا؟</h2>
+  <details><summary>منتجات أصلية</summary>جميع منتجاتنا أصلية.</details>
+  <details><summary>فحص قبل الشحن</summary>بنراجع كل صنف.</details>
+  <details><summary>تغليف آمن</summary>تغليف احترافي.</details>
+  <details><summary>دعم سريع</summary>خدمة عملاء جاهزة.</details>
+  <details><summary>صور حقيقية</summary>بدون خداع.</details>
+  <details><summary>أسعار منافسة</summary>أفضل سعر.</details>
+  <details><summary>عروض مستمرة</summary>خصومات دايمًا.</details>
+  <details><summary>ثقة العملاء</summary>آلاف الطلبات الناجحة.</details>
+</div>
+
+<footer>
+  © To You – 2013
+</footer>
+
+</div>
+
+<script>
+function swap(el){
+  document.getElementById("mainImg").src = el.src;
+}
+</script>
+
+</body>
+</html>
